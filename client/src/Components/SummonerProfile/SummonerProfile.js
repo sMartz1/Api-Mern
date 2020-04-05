@@ -13,7 +13,7 @@ class SummonerProfile extends Component{
 					<div className="profileIcon col-1 mx-auto animated fadeInDownBig">
 						<div className="imageProfile rounded-circle mx-auto" style={{backgroundImage: "url(" + imgProfile + ")"}}></div>
 						<br/>
-						<h2 className="text-center summLevel">{data.summonerLevel} !</h2>
+						<h2 className="text-center summLevel">{data.summonerLevel}</h2>
 						<br/>
 						<h1 className="text-center summName">{data.name}</h1>
 					</div>
