@@ -1,0 +1,27 @@
+{
+  "name": "riotMern",
+  "version": "1.0.0",
+  "scripts": {
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "scss": "node-sass sass/main.scss dist/style.css",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\" "
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "axios": "^0.19.2",
+    "boostrap": "^2.0.0",
+    "bootstrap": "^4.4.1",
+    "dotenv": "^8.2.0",
+    "express": "latest",
+    "mongoose": "^5.9.7",
+    "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
+}

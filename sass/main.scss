@@ -1,0 +1,27 @@
+//λ sass --watch sass/main.scss client/public/main.css
+
+$spacer: 1rem !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3),
+    10:($spacer * 6)
+  ),
+  $spacers
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$bg: $teal;
+
+*{
+	background-color: $bg;
+}
+
+@import "profile";
