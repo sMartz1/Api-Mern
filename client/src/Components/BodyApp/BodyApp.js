@@ -4,23 +4,28 @@ import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import SummonerProfile from '../SummonerProfile/SummonerProfile';
 
 class BodyApp extends Component{
-	state = {
-		summonerData:[],
-		isLoaded:false
+	constructor(props){
+		super(props);
+		this.state = {
+			summonerData:[],
+			isLoaded:false
+		}
 	}
+
 	componentDidMount(){
 		const summonerCall = async ()=>{
 			await RiotApiComponent.getName(this.props.iHead)
 			.then(d=>{
 				console.log(d);
-				this.setState({summonerData:d.data});
+				this.setState({summonerData:d.data,
+							    isLoaded:this.props.isLoaded});
 			})
 			
 			
 		}
 
 		summonerCall();
-		this.setState({isLoaded:this.props.isLoaded});
+		
 
 	}
 	render(){
@@ -31,21 +36,30 @@ class BodyApp extends Component{
 			
 			summTest.map(profileArr=>{
 				summData = profileArr;
-
+				
 					
 			})
-			console.log(summData.name);
 			return <SummonerProfile summonerData={summData}/>
 			
-		}else{
+			
+		}else{                   
 			return(<h2>No se ha cargado</h2>)
 		}
 	}
+
+
+
+
+//////////////////////////////
+//FINAL RENDER
 		return(<div className="profileSection col-12 mt-10">
 					{renderBody(this.state.isLoaded,this.state.summonerData)}
 			  </div>)
 	}
 }
+
+
+
 const mapStateToProps = (state) => {
   return {
     iHead: state.inputHeaderReducer.inputHeader,
