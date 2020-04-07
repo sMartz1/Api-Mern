@@ -45,5 +45,36 @@ router.get('/summName/', async(req, res) => {
                     }
                 });
             });
+router.get('/rankedStats/',async(req, res) => {
+       const id = req.query.id;
+       
+       let ligas = {
+           soloq:{},
+           flexq:{},
+           unranked:{solo:true,flex:true}
+       }
+       const leagues = await RiotApi.getRanked(id)
+       .then(d=>{
+           d.data.map(a=>{
+               if(a.queueType==="RANKED_SOLO_5x5"){
+                   ligas.soloq=a;
+                   ligas.unranked.solo = false;
+                             
+               }
+               if(a.queueType==="RANKED_FLEX_SR"){
+                   ligas.flexq=a;
+                   ligas.unranked.flex = false;
+               }
+               console.log(a);
+
+           })
+
+           res.send(ligas);
+       })
+       .catch(e=>{console.log(e)});
+       
+});
+
+
 
  module.exports = router;
