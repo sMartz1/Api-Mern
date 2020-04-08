@@ -34,7 +34,7 @@ render(){
 
 const mapStateToProps = (state) => {
   return {
-    inputFilled: state.loaderReducer.summonerTyped
+    inputFilled: state.loaderReducer.isLoading||state.loaderReducer.loaded
     
   }
 };

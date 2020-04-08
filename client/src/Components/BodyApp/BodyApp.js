@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {  connect } from 'react-redux';
 import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import SummonerProfile from '../SummonerProfile/SummonerProfile';
+import summonerLoading from '../../redux/actions/summonerLoading';
 
 class BodyApp extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			summonerData:[],
-			isLoaded:false
+			summonerData:[]
+			
 		}
 	}
 
@@ -16,11 +17,15 @@ class BodyApp extends Component{
 		const summonerCall = async ()=>{
 			await RiotApiComponent.getName(this.props.iHead)
 			.then(d=>{
-				console.log(d);
-				this.setState({summonerData:d.data,
-							    isLoaded:this.props.isLoaded});
+				
+				this.setState({summonerData:d.data
+							   });
+				this.props.summonerLoading(false,"loading");
+				this.props.summonerLoading(true,"loaded");
+
 			})
-			
+				
+				
 			
 		}
 
@@ -28,22 +33,56 @@ class BodyApp extends Component{
 		
 
 	}
+
+	componentDidUpdate(){
+		if(this.props.isLoading){
+		
+							 
+		const summonerCall = async ()=>{
+			await RiotApiComponent.getName(this.props.iHead)
+			.then(d=>{
+				
+				this.setState({summonerData:d.data
+							   });
+				this.props.summonerLoading(false,"loading");
+				this.props.summonerLoading(true,"loaded");
+
+			})
+				
+				
+			
+		}
+
+		summonerCall();
+		
+	}
+}
+
+
 	render(){
 
 		const renderBody = (isLoaded,summTest) =>{
 			let summData = {}
+			let isUp = false;
 			if(isLoaded){
 			
 			summTest.map(profileArr=>{
 				summData = profileArr;
-				
+				isUp = true;
 					
 			})
+
+			if(!isUp){
+				return(<h2>Cargando...</h2>)
+		}else{
+			console.log("se va a render",summData)
 			return <SummonerProfile summonerData={summData}/>
+			
+		}
 			
 			
 		}else{                   
-			return(<h2>No se ha cargado</h2>)
+			return(<h2>Cargando...</h2>)
 		}
 	}
 
@@ -53,7 +92,7 @@ class BodyApp extends Component{
 //////////////////////////////
 //FINAL RENDER
 		return(<div className="profileSection col-12 mt-10">
-					{renderBody(this.state.isLoaded,this.state.summonerData)}
+					{renderBody(this.props.loaded,this.state.summonerData)}
 			  </div>)
 	}
 }
@@ -63,7 +102,13 @@ class BodyApp extends Component{
 const mapStateToProps = (state) => {
   return {
     iHead: state.inputHeaderReducer.inputHeader,
-   	isLoaded: state.loaderReducer.summonerTyped
+   	isLoading: state.loaderReducer.isLoading,
+   	loaded:state.loaderReducer.loaded
+
   }
 };
-export default connect( mapStateToProps)( BodyApp );
+const mapDispatchToProps = {
+   summonerLoading
+
+};
+export default connect( mapStateToProps,mapDispatchToProps)( BodyApp );

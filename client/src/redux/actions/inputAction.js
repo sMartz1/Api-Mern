@@ -1,6 +1,7 @@
 import types from '../types';
 
 const type = types.inputField;
+
 const inputAction = (txt) => {
 
   return {

@@ -1,8 +1,9 @@
 const types = {
-  inputField: 'INPUTFIELDHEADER',
-  summProfile:'SUMMONERPROFILELOADED',
-  summLoaded:'SUMMONERLOADED',
-  summonerTyped:'SUMMONTYPEDDAMM'
+  inputField: 'C',
+  summProfile:'PROFILE',
+  summLoaded:'SUMMONER LOADED',
+  summonerLoading:'SUMMONER IS LOADING',
+
 }
 
 export default types;

@@ -1,27 +1,37 @@
 import types from '../types';
 
 //GET TYPE FROM TYPE.js
-const SUMMTYPE = types.summonerTyped;
+const loading = types.summonerLoading;
+const loaded = types.summLoaded;
 
 //SET DEFAULT VALUE
 const defaultState = {
-  summonerTyped: false,
-  summonerProfile:false,
+  isLoading: false,
+  loaded:false,
+  
 
 };
 
 function reducer( state = defaultState, action ) {
 
   switch (action.type) {
-
-    case SUMMTYPE: {
+  case loading: {
 
       return {
         ...state,
-        summonerTyped: action.payload
+        isLoading: action.payload
       }
 
     }
+   case loaded: {
+
+      return {
+        ...state,
+        loaded: action.payload
+      }
+
+    }
+  
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import inputAction from '../../redux/actions/inputAction';
-import summonerTyped from '../../redux/actions/summonerTyped';
+import summonerLoading from '../../redux/actions/summonerLoading';
 
 
 
@@ -26,8 +26,10 @@ handleKey( e ) {
 
     const keyCode = e.keyCode || e.which;
     if ( keyCode === 13 ) {
-      
-        this.props.summonerTyped(true);
+      this.props.summonerLoading(false,"loaded");
+      this.props.summonerLoading(true,"loading");
+
+
        
       
 
@@ -71,7 +73,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   inputAction,
-  summonerTyped
+  summonerLoading
 
 };
 

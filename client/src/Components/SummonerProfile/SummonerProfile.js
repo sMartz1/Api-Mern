@@ -7,14 +7,14 @@ class SummonerProfile extends Component{
   	this.state={
   		ranked:{},
   		loadedRanked:false
-  	}
- 
+  		
+  		} 
 		}
 
-	componentDidMount(){
-		
+	componentDidMount() {
+		console.log("Se llama con id",this.props.summonerData.id);
 		const leagueCall = async()=>{
-
+		
 		await RiotApiComponent.getRanked(this.props.summonerData.id)
 		.then(d=>{
 			console.log("RANKED DATA",d); 
@@ -25,7 +25,11 @@ class SummonerProfile extends Component{
 			
 		})
 		.catch(e=>{console.log(e);});}
-		leagueCall();
+		
+			
+			leagueCall();
+		
+		
 		
 		
 	}
@@ -33,6 +37,7 @@ class SummonerProfile extends Component{
 	render(){
 		const data = this.props.summonerData;
 		const imgProfile = ddEndpoint+data.profileIconId+".png";
+
 		const setupLeague = (load,state)=>{
 			console.log("LOAD",load);
 			console.log("STATE",state)
