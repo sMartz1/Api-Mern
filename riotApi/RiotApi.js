@@ -11,6 +11,9 @@ const RiotApi = {
 	},
 	getRanked: id=>{
 		return axios.get(RequestUrl.getRanked(id))
+	},
+	getGame: id =>{
+		return axios.get(RequestUrl.getGame(id))
 	}
 
 

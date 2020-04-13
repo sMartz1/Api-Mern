@@ -75,6 +75,31 @@ router.get('/rankedStats/',async(req, res) => {
        
 });
 
+router.get('/game/',async(req, res) => {
+       const id = req.query.id;
+       
+       let game = {      
+       }
+       const gameRetrive = await RiotApi.getGame(id)
+       .then(d=>{  
+            game = {
+              gameData:d.data,
+              isGame:true
+            }
+            res.send(game);
+           console.log("GAME",d.data)
+       })
+       .catch(e=>{
+         if(e.response.status == 404){
+           console.log("no esta en partida")
+           res.send({isGame:false})
+         }
+         
+
+       });
+       
+});
+
 
 
  module.exports = router;

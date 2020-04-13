@@ -10,6 +10,10 @@ const RequestUrl ={
 	getRanked:id=>{
 		const urlRanked = base +"league/v4/entries/by-summoner/"+id+ process.env.API;
 		return urlRanked;
+	},
+	getGame:id=>{
+		const urlGame = base + "spectator/v4/active-games/by-summoner/"+id+process.env.API;
+		return urlGame;
 	}
 
 
