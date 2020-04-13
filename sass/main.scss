@@ -20,7 +20,7 @@ $spacers: map-merge(
 
 $bg: $teal;
 
-*{
+html,.container-fluid{
 	background-color: $bg;
 }
 

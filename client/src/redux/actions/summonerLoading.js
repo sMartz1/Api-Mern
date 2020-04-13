@@ -17,6 +17,9 @@ switch (t){
          payload: x
   }
 	}
+    default:{
+    	return true;
+    }
 }
  
 

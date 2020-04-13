@@ -10235,7 +10235,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
-* {
+html, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
   background-color: #20c997;
 }
 

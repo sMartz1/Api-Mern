@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  connect } from 'react-redux';
-
+import gameUtils from './gameUtils';
 
 class Game extends Component {
 
@@ -11,10 +11,12 @@ class Game extends Component {
 	render() {
 		const isGame = this.props.gameData.isGame;
 		const gameData = this.props.gameData.gameData;
-
+		const participantes = this.props.gameData.participantes;
+		
+		
 		const renderGame= ()=>{
 			if(isGame){
-				return <h1>En partida</h1>
+				return (<>{gameUtils.getGame(gameData,participantes)}</>)
 			}else{
 				return <h1>No esta en partida</h1>
 			}

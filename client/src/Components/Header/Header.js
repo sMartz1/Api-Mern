@@ -38,7 +38,7 @@ handleKey( e ) {
 
   render() {
     return (<nav className="navbar navbar-expand-md navbar-light bg-light fixed-top navBarWp">
-              <a className="navbar-brand" target="_blank" >RIOT API</a>
+              <a className="navbar-brand" href="#!" >RIOT API</a>
               <button className="navbar-toggler"
                       type="button"
                       data-toggle="collapse"

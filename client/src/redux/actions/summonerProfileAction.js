@@ -23,6 +23,7 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 						type:profileType,
 						payload:dfind
 					})
+					return true;
 
 
 
@@ -47,17 +48,8 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 				payload:dGame.data
 			})
 				
-		}).catch(
-		e=>{
-			if(e.response.status == 404){
-				dispatch({
-					type:gameType,
-					payload:{
-					gameData:{},
-					isGame:false
-					}	
-			})
-			}
+		}).catch(e=>{
+			console.log(e);
 		}
 		);
 	

@@ -50,6 +50,9 @@ class SummonerProfile extends Component{
 						return soloQStr
 					}
 				}
+
+				default: return "Fallo de datos..."
+
 				
 			}
 		}
