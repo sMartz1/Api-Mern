@@ -46,6 +46,7 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 			dispatch({
 				type:gameType,
 				payload:dGame.data
+
 			})
 				
 		}).catch(e=>{
@@ -57,6 +58,8 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 	dispatch(summonerLoading(true,"loaded"));
 	dispatch(summonerLoading(false,"loading"));
 		}
+
+
 
 export default summonerProfileAction;
 

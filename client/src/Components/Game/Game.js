@@ -10,13 +10,13 @@ class Game extends Component {
 
 	render() {
 		const isGame = this.props.gameData.isGame;
-		const gameData = this.props.gameData.gameData;
-		const participantes = this.props.gameData.participantes;
+		const gameData = this.props.gameData;
+		
 		
 		
 		const renderGame= ()=>{
 			if(isGame){
-				return (<>{gameUtils.getGame(gameData,participantes)}</>)
+				return (<>{gameUtils.getGame(gameData)}</>)
 			}else{
 				return <h1>No esta en partida</h1>
 			}
