@@ -3,6 +3,7 @@ import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import summonerLoading from './summonerLoading';
 const profileType = types.summProfile;
 const profileRankedType = types.summProfileRanked;
+const gameType = types.gameType
 
 
 const summonerProfileAction = () => async (dispatch, getState) =>{
@@ -12,7 +13,7 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 	dispatch(summonerLoading(false,"loaded"));
 	dispatch(summonerLoading(true,"loading"));
 
-
+	
 	
 	//GET SUMMONER PROFILE
 	await RiotApiComponent.getName(name)
@@ -24,27 +25,33 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 					})
 
 
+
 			})
 
 	}).catch(e=>console.log(e));
 	let idSummoner = getState().summonerProfileReducer.summonerData.id;
 	await RiotApiComponent.getRanked(idSummoner)
 		.then(dRanked=>{
+			console.log("Se manda",dRanked.data)
 			dispatch({
 				type:profileRankedType,
 				payload:dRanked.data
 			})
+
 		}).catch(e=>console.log(e));
 
 	await RiotApiComponent.getGame(idSummoner)
 		.then(dGame=>{
-			
+			dispatch({
+				type:gameType,
+				payload:dGame.data
+			})
 				
 		}).catch(
 		e=>console.log("ERROR GAME MACHINE")
 		);
 	
-	console.log("Valor State",getState());		
+		
 	dispatch(summonerLoading(true,"loaded"));
 	dispatch(summonerLoading(false,"loading"));
 		}

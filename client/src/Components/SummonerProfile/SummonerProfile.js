@@ -1,65 +1,52 @@
 import React, {Component} from 'react';
-import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
+import {  connect } from 'react-redux';
+
 const ddEndpoint = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/profileicon/";
 class SummonerProfile extends Component{
-	constructor(props){
-  	super(props);	
-  	this.state={
-  		ranked:{},
-  		loadedRanked:false
-  		
-  		} 
-		}
 
-	componentDidMount() {
-		console.log("Se llama con id",this.props.summonerData.id);
-		const leagueCall = async()=>{
-		
-		await RiotApiComponent.getRanked(this.props.summonerData.id)
-		.then(d=>{
-			console.log("RANKED DATA",d); 
-			this.setState({
-			ranked: d.data,
-			loadedRanked:true
-		});
-			
-		})
-		.catch(e=>{console.log(e);});}
-		
-			
-			leagueCall();
-		
-		
-		
-		
-	}
-	
+
 	render(){
 		const data = this.props.summonerData;
+		
+		
 		const imgProfile = ddEndpoint+data.profileIconId+".png";
 
-		const setupLeague = (load,state)=>{
-			console.log("LOAD",load);
-			console.log("STATE",state)
-			if(load){
-				return (<div><p>Solo: {renderLeague("solo",state)}</p> <p>Flex: {renderLeague("flex",state)}</p></div>)
-			}
+
+		const setupLeague = (state)=>{
+			console.log("EEE",state);	
+			return (<div>
+				<div class="row">
+						<div class="col-5">
+	 						<div class="row text-center ">
+	 							<div class="profileLiga col-6 p-0">
+	 								<p>Solo: {renderLeague("solo",state)}</p>
+	 							</div>
+	 							<div class="profileLiga col-6 p-0">
+	 								<p>Flex: {renderLeague("flex",state)}</p>
+	 							</div>
+	 						</div>
+	 					</div>
+					</div>
+				
+				
+				 </div>)
+			
 		}
 		const renderLeague = (league,state)=>{
 			switch(league){
 				case "solo":{
-					if(state.ranked.unranked.solo){
+					if(state.unranked.solo){
 						return "Unranked"
 					}else{
-						const soloQStr = state.ranked.soloq.tier +" "+state.ranked.soloq.rank
+						const soloQStr = state.soloq.tier +" "+state.soloq.rank
 						return soloQStr
 					}
 				}
 				case "flex":{
-					if(state.ranked.unranked.flex){
+					if(state.unranked.flex){
 						return "Unranked"
 					}else{
-						const soloQStr = state.ranked.flexq.tier +" "+state.ranked.flexq.rank
+						const soloQStr = state.flexq.tier +" "+state.flexq.rank
 						return soloQStr
 					}
 				}
@@ -67,7 +54,7 @@ class SummonerProfile extends Component{
 			}
 		}
 		
-		return (
+		return (<>
 				<div className="row">
 
 					<div className="profileIcon col-1 mx-auto animated fadeInDownBig">
@@ -76,14 +63,23 @@ class SummonerProfile extends Component{
 						<h2 className="text-center summLevel">{data.summonerLevel}</h2>
 						<br/>
 						<h1 className="text-center summName">{data.name}</h1>
-						{setupLeague(this.state.loadedRanked,this.state)}
-						
-						
+						{setupLeague(this.props.rankedData)}
+					</div>
+					
+
 					</div>
 					
 					
-				</div>)
+				</>)
 	}
 }
 
-export default SummonerProfile
+const mapStateToProps = (state) => {
+  return {
+    summonerData: state.summonerProfileReducer.summonerData,
+   	rankedData: state.summonerProfileReducer.rankedData
+
+  }
+};
+
+export default connect( mapStateToProps)( SummonerProfile );
