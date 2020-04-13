@@ -1,1 +1,4 @@
-gameUtils.js
+
+const gameUtils = {}
+
+export default gameUtils;
