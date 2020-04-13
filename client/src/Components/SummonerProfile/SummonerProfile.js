@@ -15,13 +15,13 @@ class SummonerProfile extends Component{
 		const setupLeague = (state)=>{
 			console.log("EEE",state);	
 			return (<div>
-				<div class="row">
-						<div class="col-5">
-	 						<div class="row text-center ">
-	 							<div class="profileLiga col-6 p-0">
+				<div className="row">
+						<div className="col-12">
+	 						<div className="row text-center ">
+	 							<div className="profileLiga col">
 	 								<p>Solo: {renderLeague("solo",state)}</p>
 	 							</div>
-	 							<div class="profileLiga col-6 p-0">
+	 							<div className="profileLiga col">
 	 								<p>Flex: {renderLeague("flex",state)}</p>
 	 							</div>
 	 						</div>

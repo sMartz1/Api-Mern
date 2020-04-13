@@ -3,7 +3,7 @@ import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import summonerLoading from './summonerLoading';
 const profileType = types.summProfile;
 const profileRankedType = types.summProfileRanked;
-const gameType = types.gameType
+const gameType = types.gameData;
 
 
 const summonerProfileAction = () => async (dispatch, getState) =>{
@@ -48,7 +48,17 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 			})
 				
 		}).catch(
-		e=>console.log("ERROR GAME MACHINE")
+		e=>{
+			if(e.response.status == 404){
+				dispatch({
+					type:gameType,
+					payload:{
+					gameData:{},
+					isGame:false
+					}	
+			})
+			}
+		}
 		);
 	
 		

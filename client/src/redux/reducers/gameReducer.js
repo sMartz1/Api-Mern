@@ -7,7 +7,8 @@ const typeGame = types.gameData;
 
 //SET DEFAULT VALUE
 const defaultState = {
-  gameData:{}
+  gameData:{},
+  isGame:false
 };
 
 function reducer( state = defaultState, action ) {
@@ -17,7 +18,8 @@ function reducer( state = defaultState, action ) {
     case typeGame: {
 
       return {
-        gameData: action.payload
+        gameData: action.payload.gameData,
+        isGame:action.payload.isGame
       }
 
     }
