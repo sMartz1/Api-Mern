@@ -1,6 +1,7 @@
 import types from '../types';
 import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import summonerLoading from './summonerLoading';
+import gameAction from './gameAction';
 const profileType = types.summProfile;
 const profileRankedType = types.summProfileRanked;
 const gameType = types.gameData;
@@ -41,20 +42,9 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 
 		}).catch(e=>console.log(e));
 
-	await RiotApiComponent.getGame(idSummoner)
-		.then(dGame=>{
-			dispatch({
-				type:gameType,
-				payload:dGame.data
-
-			})
-				
-		}).catch(e=>{
-			console.log(e);
-		}
-		);
 	
-		
+	
+	dispatch(gameAction(idSummoner));
 	dispatch(summonerLoading(true,"loaded"));
 	dispatch(summonerLoading(false,"loading"));
 		}

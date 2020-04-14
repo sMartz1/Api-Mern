@@ -86,8 +86,7 @@ router.get('/game/',async(req, res) => {
             game = {
               gameData:d.data,
               isGame:true,
-              participantes:arrangeTeams(d.data)
-            }
+                  }
             res.send(game);
            console.log("GAME",d.data)
        })
@@ -102,67 +101,7 @@ router.get('/game/',async(req, res) => {
        
 });
 
-const arrangeTeams = data=>{
-  let ordenado = {};
-  let t1 = [];
-  let t2 = [];
 
-  data.participants.map(d=>{
-     if(d.teamId === 100){
 
-         t1.push({
-                 summoner:d,
-                 ranked:getRankedsGame(d.summonerId)});
-       
-       
-
-     }else{
-      
-                t2.push({
-                 summoner:d,
-                 ranked:getRankedsGame(d.summonerId)})
-       
-       
-     }
-      return true;
-  });
-
-  ordenado = {
-    t100:t1,
-    t200:t2
-  }
-  return ordenado;
-}
-
-const getRankedsGame = async data=>{
-
-   const id = data;
-       
-       let ligas = {
-           soloq:{},
-           flexq:{},
-           unranked:{solo:true,flex:true}
-       }
-
-       const leagues = await RiotApi.getRanked(id)
-       .then(d=>{
-            d.data.map(a=>{
-               if(a.queueType==="RANKED_SOLO_5x5"){
-                   ligas.soloq=a;
-                   ligas.unranked.solo = false;
-                             
-               }
-               if(a.queueType==="RANKED_FLEX_SR"){
-                   ligas.flexq=a;
-                   ligas.unranked.flex = false;
-               }
-               console.log(a);
-
-           })
-
-           return ligas
-       })
-       .catch(e=>{console.log(e)});
-}
 
  module.exports = router;
