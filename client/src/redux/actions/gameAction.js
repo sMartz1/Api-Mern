@@ -11,18 +11,30 @@ const gameAction = (id) => async (dispatch, getState) =>{
 	let participantes = {}
 	await RiotApiComponent.getGame(id)
 		.then(dGame=>{
+			console.log("ISGAME ACTION",dGame.data.isGame)
 			 dataReturn.gameData = dGame.data.gameData
 			 dataReturn.isGame = dGame.data.isGame
 				
 		}).catch(e=>console.log(e));
-	console.log("SE envia",dataReturn)
-	participantes = await arrangeTeams(dataReturn.gameData);
-	dataReturn.participantes = participantes;
-	console.log("RETURN",dataReturn);
-	dispatch({
+
+	
+	
+	if(dataReturn.isGame){
+		participantes = await arrangeTeams(dataReturn.gameData);
+		dataReturn.participantes = participantes;
+	
+			dispatch({
 		type:typeGame,
 		payload:dataReturn
 	})
+	}else{
+		dispatch({
+		type:typeGame,
+		payload:dataReturn
+	})
+
+	}
+
 
 	dispatch(summonerLoading(true,"loaded"));
 	dispatch(summonerLoading(false,"loading"));
@@ -40,7 +52,7 @@ const arrangeTeams = async data=>{
      
      let rankedData = await RiotApiComponent.getRanked(x.summonerId).then(dataRanked=>{
      	let d = dataRanked.data;
-     	console.log("INSIDE",d)
+     	
      	;
      	if(x.teamId === 100){
          
@@ -69,7 +81,7 @@ const arrangeTeams = async data=>{
     t100:t1,
     t200:t2
   }
-  console.log("ORDEN",ordenado);
+  
   return ordenado;
 }
 

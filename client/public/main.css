@@ -10303,8 +10303,21 @@ h3 {
   width: 20px;
 }
 
+html {
+  min-height: 100%;
+}
+
 html, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
-  background-color: #20c997;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  font-family: "Quicksand", sans-serif;
+}
+
+.champion {
+  margin-right: 30px;
+}
+.champion img {
+  height: 88px;
+  margin-left: -15px;
 }
 
 .imageProfile {

@@ -11,12 +11,14 @@ class Game extends Component {
 	render() {
 		const isGame = this.props.gameData.isGame;
 		const gameData = this.props.gameData;
+		const champions = this.props.champions;
 		
 		
 		
+		console.log("ISGAME",isGame)
 		const renderGame= ()=>{
 			if(isGame){
-				return (<>{gameUtils.getGame(gameData)}</>)
+				return (<>{gameUtils.getGame(gameData,champions)}</>)
 			}else{
 				return <h1>No esta en partida</h1>
 			}
@@ -30,7 +32,8 @@ class Game extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    gameData: state.gameReducer
+    gameData: state.gameReducer,
+    champions: state.championReducer.champions
    	
 
   }

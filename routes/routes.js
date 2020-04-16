@@ -91,8 +91,8 @@ router.get('/game/',async(req, res) => {
            console.log("GAME",d.data)
        })
        .catch(e=>{
-         
-           console.log(e)
+           
+           console.log("GAME ERROR", e)
            res.send({isGame:false})
          
          

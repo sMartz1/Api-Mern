@@ -13,7 +13,7 @@ class SummonerProfile extends Component{
 
 
 		const setupLeague = (state)=>{
-			console.log("EEE",state);	
+				
 			return (<div>
 				<div className="row">
 						<div className="col-12">

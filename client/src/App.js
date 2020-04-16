@@ -4,6 +4,8 @@ import Header from './Components/Header/Header';
 import BodyApp from './Components/BodyApp/BodyApp';
 import { connect } from 'react-redux';
 
+import championAction from './redux/actions/championAction';
+
 
 
 const renderBody= (x)=>{
@@ -16,7 +18,13 @@ const renderBody= (x)=>{
 }
 
 class App extends Component {
+ constructor(props){
+   super(props);
+ }
 
+componentDidMount(){
+  this.props.championAction();
+}
 render(){
   return (  
     <div className="App">
@@ -39,7 +47,11 @@ const mapStateToProps = (state) => {
   }
 };
 
+const mapDispatchToProps = {
+  championAction,
+
+};
 
 
 
-export default connect( mapStateToProps)( App );
+export default connect( mapStateToProps,mapDispatchToProps)( App );

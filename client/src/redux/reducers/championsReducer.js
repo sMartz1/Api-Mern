@@ -1,27 +1,23 @@
 import types from '../types';
 import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 //GET TYPE FROM TYPE.js
-const typeGame = types.gameData;
+const typeChampion = types.champion;
 
 
 
 //SET DEFAULT VALUE
 const defaultState = {
-  gameData:{},
-  participantes:[],
-  isGame:false
+  champions:{}
 };
 
 function reducer( state = defaultState, action ) {
 
   switch (action.type) {
 
-    case typeGame: {
-
+    case typeChampion: {
+      
       return {
-        gameData: action.payload.gameData,
-        participantes:action.payload.participantes,
-        isGame:action.payload.isGame
+        champions:action.payload.data
       }
 
     }
@@ -29,7 +25,6 @@ function reducer( state = defaultState, action ) {
       return state;
   }
 }
-
 
 
 

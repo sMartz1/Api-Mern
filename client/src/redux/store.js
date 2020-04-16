@@ -8,13 +8,15 @@ import inputHeaderReducer from './reducers/inputHeaderReducer';
 import loaderReducer from './reducers/loaderReducer';
 import summonerProfileReducer from './reducers/summonerProfileReducer';
 import gameReducer from './reducers/gameReducer';
+import championReducer from './reducers/championsReducer';
 //COMBINE REDUCERS
 
 const reducer = combineReducers( {
   inputHeaderReducer,
   loaderReducer,
   summonerProfileReducer,
-  gameReducer
+  gameReducer,
+  championReducer
 
 } );
 

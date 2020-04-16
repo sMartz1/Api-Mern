@@ -34,7 +34,7 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 	let idSummoner = getState().summonerProfileReducer.summonerData.id;
 	await RiotApiComponent.getRanked(idSummoner)
 		.then(dRanked=>{
-			console.log("Se manda",dRanked.data)
+			
 			dispatch({
 				type:profileRankedType,
 				payload:dRanked.data
@@ -45,8 +45,7 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 	
 	
 	dispatch(gameAction(idSummoner));
-	dispatch(summonerLoading(true,"loaded"));
-	dispatch(summonerLoading(false,"loading"));
+
 		}
 
 
