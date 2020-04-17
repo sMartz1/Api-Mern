@@ -14,6 +14,9 @@ const RiotApiComponent = {
 	},
 	getChampions:()=>{
 		return axios.get('http://ddragon.leagueoflegends.com/cdn/10.7.1/data/en_US/champion.json');
+	},
+	getColors:id=>{
+		return axios.get('/colors?id='+id);
 	}
 }
 

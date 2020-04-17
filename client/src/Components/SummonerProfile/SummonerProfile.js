@@ -1,17 +1,21 @@
 import React, {Component} from 'react';
 import {  connect } from 'react-redux';
 
+
+
+
 const ddEndpoint = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/profileicon/";
+
 class SummonerProfile extends Component{
 
 
 	render(){
 		const data = this.props.summonerData;
-		
-		
+
 		const imgProfile = ddEndpoint+data.profileIconId+".png";
-
-
+		
+		
+	
 		const setupLeague = (state)=>{
 				
 			return (<div>
@@ -56,12 +60,26 @@ class SummonerProfile extends Component{
 				
 			}
 		}
-		
+const setupRgb = color=>{
+	return color[0]+","+color[1]+","+color[2]
+}
+let colors = this.props.colors;
+
+console.log("COLORS EN COMPONENT", colors)
+let estilos = {
+	backgroundImage: "url(" + imgProfile + ")",
+	boxShadow: "17px 6px 1px rgb("+setupRgb(colors[0])+",0.6),-4px 10px 1px rgb("+setupRgb(colors[1])+",0.6),-16px -6px 1px rgb("+setupRgb(colors[2])+",0.5),5px -4px 1px rgb("+setupRgb(colors[3])+",0.5)"
+}
+
 		return (<>
 				<div className="row">
 
 					<div className="profileIcon col-1 mx-auto animated fadeInDownBig">
-						<div className="imageProfile rounded-circle mx-auto" style={{backgroundImage: "url(" + imgProfile + ")"}}></div>
+						
+ 					
+    			<div className="imageProfile rounded-circle mx-auto" style={estilos} ></div>
+ 					
+						
 						<br/>
 						<h2 className="text-center summLevel">{data.summonerLevel}</h2>
 						<br/>
@@ -80,7 +98,8 @@ class SummonerProfile extends Component{
 const mapStateToProps = (state) => {
   return {
     summonerData: state.summonerProfileReducer.summonerData,
-   	rankedData: state.summonerProfileReducer.rankedData
+   	rankedData: state.summonerProfileReducer.rankedData,
+   	colors: state.summonerProfileReducer.colors
 
   }
 };

@@ -5,6 +5,7 @@ import gameAction from './gameAction';
 const profileType = types.summProfile;
 const profileRankedType = types.summProfileRanked;
 const gameType = types.gameData;
+const colorType = types.colorPallete;
 
 
 const summonerProfileAction = () => async (dispatch, getState) =>{
@@ -31,7 +32,19 @@ const summonerProfileAction = () => async (dispatch, getState) =>{
 			})
 
 	}).catch(e=>console.log(e));
+
 	let idSummoner = getState().summonerProfileReducer.summonerData.id;
+	let idProfile = getState().summonerProfileReducer.summonerData.profileIconId;
+
+	await RiotApiComponent.getColors(idProfile)
+		.then(colors=>{
+			dispatch({
+				type:colorType,
+				payload:colors.data
+			});
+		}).catch(e=>console.log(e));
+
+
 	await RiotApiComponent.getRanked(idSummoner)
 		.then(dRanked=>{
 			

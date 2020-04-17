@@ -1,7 +1,7 @@
 import React from 'react';
 
 const championUrl = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/champion/";
-
+const { getPaletteFromURL } = require('color-thief-node');
 let gameUtils = {
 	getGame:(gameData,champions)=>{
 		const participantes = gameData.participantes;

@@ -3,6 +3,8 @@ const SummonerProfile = require('./../mongoDb/models/SummonerProfile');
 const RiotApi = require('./../riotApi/RiotApi');
 const axios = require('axios');
 const router = express.Router();
+const ddEndpoint = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/profileicon/";
+const { getPaletteFromURL } = require('color-thief-node');
 
 router.get('/summName/', async(req, res) => {
             const nameSummoner = req.query.name;
@@ -98,6 +100,17 @@ router.get('/game/',async(req, res) => {
          
 
        });
+       
+});
+
+router.get('/colors/',async(req, res) => {
+       const imageId = req.query.id;
+       const imgProfile = ddEndpoint+imageId+".png";
+       
+       colorPallete = await getPaletteFromURL(imgProfile);
+       console.log("PALETA        ",colorPallete)
+       res.send(colorPallete)
+   
        
 });
 

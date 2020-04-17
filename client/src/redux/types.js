@@ -5,7 +5,8 @@ const types = {
   summonerLoading:'SUMMONER IS LOADING',
   summProfileRanked:"RANKED DATA",
   gameData:"GAME DATA",
-  champion:"CHAMPIOOOOOONS"
+  champion:"CHAMPIOOOOOONS",
+  colorPallete:"PALETA DE COLORES"
 }
 
 export default types;
