@@ -14,6 +14,9 @@ const RiotApi = {
 	},
 	getGame: id =>{
 		return axios.get(RequestUrl.getGame(id))
+	},
+	getMatchQueue:(id,queueType)=>{
+		return axios.get(RequestUrl.getQueueMatchs(id,queueType))
 	}
 
 

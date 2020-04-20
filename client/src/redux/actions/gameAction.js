@@ -11,7 +11,7 @@ const gameAction = (id) => async (dispatch, getState) =>{
 	let participantes = {}
 	await RiotApiComponent.getGame(id)
 		.then(dGame=>{
-			console.log("ISGAME ACTION",dGame.data.isGame)
+			
 			 dataReturn.gameData = dGame.data.gameData
 			 dataReturn.isGame = dGame.data.isGame
 				
@@ -48,9 +48,9 @@ const arrangeTeams = async data=>{
   let t2 = [];
 
 
-   await Promise.all(data.participants.map(async x=>{
+  await Promise.all(data.participants.map(async x=>{
      
-     let rankedData = await RiotApiComponent.getRanked(x.summonerId).then(dataRanked=>{
+  await RiotApiComponent.getRanked(x.summonerId).then(dataRanked=>{
      	let d = dataRanked.data;
      	
      	;
@@ -71,7 +71,7 @@ const arrangeTeams = async data=>{
        
      }
      });
-    
+    	
 
     
       

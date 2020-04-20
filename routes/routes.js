@@ -94,7 +94,7 @@ router.get('/game/',async(req, res) => {
        })
        .catch(e=>{
            
-           console.log("GAME ERROR", e)
+           console.log("Seguramente no este en partida.")
            res.send({isGame:false})
          
          
@@ -110,6 +110,22 @@ router.get('/colors/',async(req, res) => {
        colorPallete = await getPaletteFromURL(imgProfile);
        console.log("PALETA        ",colorPallete)
        res.send(colorPallete)
+   
+       
+});
+
+router.get('/matchList/',async(req, res) => {
+       const accountId = req.query.id;
+       const type = req.query.typeQ;
+       console.log("ID :     "+accountId);
+       console.log("TYPE:       "+ type)
+       await RiotApi.getMatchQueue(accountId,type)
+      .then(d=>{
+        console.log("MATCH DATA",d.data)
+        res.send(d.data);
+      })
+
+
    
        
 });

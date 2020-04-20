@@ -1,5 +1,5 @@
 import types from '../types';
-import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
+
 //GET TYPE FROM TYPE.js
 const typeChampion = types.champion;
 

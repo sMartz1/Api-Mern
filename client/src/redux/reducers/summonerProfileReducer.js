@@ -4,13 +4,15 @@ import types from '../types';
 const typeProfile = types.summProfile;
 const typeRanked = types.summProfileRanked;
 const typeColor = types.colorPallete;
+const matchType = types.matchRanked;
 
 
 //SET DEFAULT VALUE
 const defaultState = {
   summonerData:{},
   rankedData:{},
-  colors:[]
+  colors:[],
+  matchData:{}
 };
 
 function reducer( state = defaultState, action ) {
@@ -37,6 +39,12 @@ function reducer( state = defaultState, action ) {
       return{
         ...state,
         colors:action.payload
+      }
+    }
+    case matchType:{
+      return{
+        ...state,
+        matchData:action.payload
       }
     }
     default:

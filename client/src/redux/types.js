@@ -6,7 +6,8 @@ const types = {
   summProfileRanked:"RANKED DATA",
   gameData:"GAME DATA",
   champion:"CHAMPIOOOOOONS",
-  colorPallete:"PALETA DE COLORES"
+  colorPallete:"PALETA DE COLORES",
+  matchRanked:"MATCH RANKED"
 }
 
 export default types;
