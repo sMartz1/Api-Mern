@@ -61,7 +61,7 @@ let estilos = {
 	backgroundImage: "url(" + imgProfile + ")",
 	boxShadow: "17px 6px 1px rgb("+setupRgb(colors[0])+",0.6),-4px 10px 1px rgb("+setupRgb(colors[1])+",0.6),-16px -6px 1px rgb("+setupRgb(colors[2])+",0.5),5px -4px 1px rgb("+setupRgb(colors[3])+",0.5)"
 }
-console.log("MATCHES", this.props.matchRanked)
+console.log("MATCHES", this.props.matchRanked.solo)
 
 
 		return (<>
@@ -72,14 +72,16 @@ console.log("MATCHES", this.props.matchRanked)
 						<div className="w-100"></div>
 						{renderLeague("solo",this.props.rankedData)}
 						<div className="w-100"></div>
-						<div className="row ml-0 pl-1">
-							{this.props.matchRanked.solo.matches.map(mat=>{
+						<div className="row ml-0 pl-2">
+							{Object.keys(this.props.matchRanked.solo).map((mat,ky)=>{
+								let actual = this.props.matchRanked.solo[mat]
+								console.log("loop",actual)
 								let matchStyle = {
-									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(mat.champion,champions) + ".png)",
+									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
 								}
 								return(<>
-									<div className="col-1 tenGames" style={matchStyle}>
-									<div className="resultadoMatch"></div>
+									<div key={ky} className="col-1 tenGames" style={matchStyle}>
+									{actual.win?(<div className="victoria"></div>):(<div className="derrota"></div>)}
 									</div>
 									</>)
 							})}
@@ -108,6 +110,21 @@ console.log("MATCHES", this.props.matchRanked)
 						<h4 className="col">Flex</h4>
 						<div className="w-100"></div>
 						{renderLeague("flex",this.props.rankedData)}
+						<div className="w-100"></div>
+						<div className="row ml-0 pl-2">
+							{Object.keys(this.props.matchRanked.flex).map((mat,ky)=>{
+								let actual = this.props.matchRanked.flex[mat]
+								console.log("loop",actual)
+								let matchStyle = {
+									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
+								}
+								return(<>
+									<div key={ky} className="col-1 tenGames" style={matchStyle}>
+									{actual.win?(<div className="victoria"></div>):(<div className="derrota"></div>)}
+									</div>
+									</>)
+							})}
+						</div>
 
 					</div>
 				</div>

@@ -20,8 +20,29 @@ $spacers: map-merge(
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 .tenGames{
-  height: 40px;
+  height: 30px;
   background-size: cover;
+  
+}
+.victoria,.derrota{
+    margin-top: 29px;
+    width: 100%;
+    position: absolute;
+    height: 21%;
+    border-right:1px solid rgba(1, 0, 0, .7);
+    border-left:1px solid rgba(1, 0, 0, .7);
+    margin-left: -15px;
+}
+.victoria{
+     
+    background-color: $blue;
+    
+}
+
+.derrota{
+     
+    background-color: $red;
+   
 }
 
 .statsProfile{
@@ -63,8 +84,8 @@ html,.container-fluid{
 .champion{
       margin-right: 30px;
   img{
-        height: 88px;
-    margin-left: -15px;
+      height: 88px;
+      margin-left: -15px;
   }
 }
 

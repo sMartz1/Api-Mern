@@ -33,8 +33,12 @@ const RequestUrl ={
 	},
 	getQueueMatchs:(id,qType)=>{
 		const urlMatch = base + "match/v4/matchlists/by-account/"+id+process.env.API+"&queue="+queueTypes(qType)+"&endIndex=10";
-		console.log("QUERY MATCH", urlMatch)
+		
 		return urlMatch;
+	},
+	getMatchById:id=>{
+		const urlMatchId = base + "match/v4/matches/" + id + process.env.API;
+		return urlMatchId;
 	}
 
 

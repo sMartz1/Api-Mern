@@ -17,6 +17,9 @@ const RiotApi = {
 	},
 	getMatchQueue:(id,queueType)=>{
 		return axios.get(RequestUrl.getQueueMatchs(id,queueType))
+	},
+	getMatchId:id=>{
+		return axios.get(RequestUrl.getMatchById(id))
 	}
 
 

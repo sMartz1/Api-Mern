@@ -12,7 +12,7 @@ const defaultState = {
   summonerData:{},
   rankedData:{},
   colors:[],
-  matchData:{}
+  matchData:[]
 };
 
 function reducer( state = defaultState, action ) {
