@@ -9,7 +9,9 @@ const {
 } = require('color-thief-node');
 
 router.get('/summName/', async(req, res) => {
+    let time = Date.now();
     const nameSummoner = req.query.name;
+    const sevenDaysMs = 604800000;
     
     const isSumm = await SummonerProfile.find({
             "name": new RegExp('\\b' + nameSummoner + '\\b', 'i')
@@ -48,7 +50,48 @@ router.get('/summName/', async(req, res) => {
                 })
             } else {
                 
-                res.send(fo);
+               
+                   let diferencia = time-fo.revisionDate;
+                   console.log("Revision",diferencia>sevenDaysMs);
+
+                  if(diferencia>sevenDaysMs){
+                    console.log("Se debe buscar de nuevo");
+                  console.log("Se añade nuevo USER! ", nameSummoner);
+                  RiotApi.sByName(nameSummoner).then(d => {
+                    fo = {
+                        accountId: d.data.accountId,
+                        profileIconId: d.data.profileIconId,
+                        name: d.data.name,
+                        id: d.data.id,
+                        summonerLevel: d.data.summonerLevel,
+                        revisionDate: d.data.revisionDate,
+                        puuid: d.data.puuid
+                    };
+
+                    fo.save()
+                        .then(result => {
+                            SummonerProfile.find({
+                                    id: result.id
+                                })
+                                .then(finalSend => {
+                                    res.send(finalSend);
+                                });
+
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+
+
+
+                })
+
+                  }else{
+                    console.log("Se envia de BD")
+                    res.send(fo);
+                  }
+                
+                
             }
         });
 });

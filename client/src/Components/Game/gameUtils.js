@@ -11,7 +11,7 @@ let gameUtils = {
 				<div className="col-6 team100group">
 					<div className="row">
 						{participantes.t100.map(s=>{
-							console.log(champions)
+							
 							let cName = championName(s.summoner.championId,champions);
 							return(<div className="col-10 offset-1 bg-light mb-1 team100 player" key={s.summoner.summonerId} >
 								<div className="row">
@@ -111,8 +111,8 @@ const championName= (id,c)=>{
 	for(var i in champions){
 		
 		
-		if(champions[i].key == id){
-			console.log("Se encuentra champ",champions[i].id)
+		if(champions[i].key==id){
+			
 			name = champions[i].id
 		}
 	}

@@ -65,7 +65,7 @@ const summonerProfileAction = () => async(dispatch, getState) => {
     if (!soloQ) {
         await RiotApiComponent.getMatch(accountId, "solo").
         then(d => {
-            console.log("ACTION llega", d.data)
+
             dataProfile.solo = d.data
         })
     }
@@ -76,8 +76,8 @@ const summonerProfileAction = () => async(dispatch, getState) => {
         })
     }
 
-    
-    
+
+
 
     dispatch({
         type: matchType,

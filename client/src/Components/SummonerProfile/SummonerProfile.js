@@ -61,7 +61,6 @@ let estilos = {
 	backgroundImage: "url(" + imgProfile + ")",
 	boxShadow: "17px 6px 1px rgb("+setupRgb(colors[0])+",0.6),-4px 10px 1px rgb("+setupRgb(colors[1])+",0.6),-16px -6px 1px rgb("+setupRgb(colors[2])+",0.5),5px -4px 1px rgb("+setupRgb(colors[3])+",0.5)"
 }
-console.log("MATCHES", this.props.matchRanked.solo)
 
 
 		return (<>
@@ -73,19 +72,22 @@ console.log("MATCHES", this.props.matchRanked.solo)
 						{renderLeague("solo",this.props.rankedData)}
 						<div className="w-100"></div>
 						<div className="row ml-0 pl-2">
-							{Object.keys(this.props.matchRanked.solo).map((mat,ky)=>{
+						{Object.keys(this.props.matchRanked.solo).map((mat,ky)=>{
 								let actual = this.props.matchRanked.solo[mat]
-								console.log("loop",actual)
+								
 								let matchStyle = {
 									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
 								}
-								return(<>
+								return(
 									<div key={ky} className="col-1 tenGames" style={matchStyle}>
-									{actual.win?(<div className="victoria"></div>):(<div className="derrota"></div>)}
+									{actual.win?(<div key={ky} className="victoria"></div>):(<div key={ky} className="derrota"></div>)}
 									</div>
-									</>)
+									)
 							})}
+
 						</div>
+						<div className="w-100"></div>
+						<h3 className="lp text-center col mt-2">{this.props.rankedData.soloq.leaguePoints} LP</h3>
 
 
 
@@ -114,24 +116,26 @@ console.log("MATCHES", this.props.matchRanked.solo)
 						<div className="row ml-0 pl-2">
 							{Object.keys(this.props.matchRanked.flex).map((mat,ky)=>{
 								let actual = this.props.matchRanked.flex[mat]
-								console.log("loop",actual)
+								
 								let matchStyle = {
 									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
 								}
-								return(<>
+								return(
 									<div key={ky} className="col-1 tenGames" style={matchStyle}>
-									{actual.win?(<div className="victoria"></div>):(<div className="derrota"></div>)}
+									{actual.win?(<div key={ky} className="victoria"></div>):(<div key={ky}  className="derrota"></div>)}
 									</div>
-									</>)
+									)
 							})}
 						</div>
-
+						<div className="w-100"></div>
+						<h3 className="lp text-center col mt-2">{this.props.rankedData.flexq.leaguePoints} LP</h3>
 					</div>
 				</div>
 					</div>
 					
 					
 				</>)
+
 	}
 }
 
