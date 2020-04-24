@@ -217,15 +217,17 @@ router.get('/matchList/', async(req, res) => {
         
         })
         .catch(e => console.log("ERROR MATCH List"))
-    
- 
-
-   
-
-
-
 
 });
+
+router.get('/allM/', async(req,res)=>{
+    const summId = req.query.id;
+    console.log("ALL M")
+    const masteryRetrive = await RiotApi.getAllMastery(summId)
+        .then(d=>{
+               res.send(d.data)
+        }).catch(console.log("Error en mastery"))
+})
 
 
 

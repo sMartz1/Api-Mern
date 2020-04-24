@@ -63,6 +63,30 @@ let estilos = {
 }
 
 
+
+
+
+const renderMastery = mastery=>{
+	let temp = []
+	for(let i =0;i<mastery.length;i++){
+	console.log(mastery[i]);
+	temp.push(mastery[i]);
+	if(i>2){
+		break;
+	}
+	
+	
+
+}
+return temp;
+}
+
+let mastery = this.props.mastery.allMastery;
+let topFour =renderMastery(mastery);
+console.log(topFour);	
+
+
+
 		return (<>
 				<div className="row">
 				<div className="col-2 soloStats statsProfile bg-light mx-auto animated fadeInDownBig">
@@ -93,7 +117,27 @@ let estilos = {
 
 
 					</div>
+
 				</div>
+			    <div className="col-2 ">
+			    <div className="row">
+			    <div className="col-8 statsProfile bg-light mastery mx-auto">
+			    {topFour.map((m,i)=>{
+			   
+				let championStyle = {
+					backgroundImage:"url("+championUrl + gameUtils.getChampionName(m.championId,champions) + ".png)"
+				}
+			    		return(<>
+					<div className="masteryChampion row" key={i}>
+					<div className="col-6">
+						<h3 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h3>
+						<p key={m.championId+"a"}>{m.championPoints}</p>
+					</div>
+					<div className="imageChampion col-6" style={championStyle}></div>
+					</div> </>)
+			    })}</div>
+			    </div>
+			    </div>
 
 				<div className="profileIcon col-1 mx-auto animated fadeInDownBig">
 						
@@ -145,7 +189,8 @@ const mapStateToProps = (state) => {
    	rankedData: state.summonerProfileReducer.rankedData,
    	colors: state.summonerProfileReducer.colors,
    	matchRanked: state.summonerProfileReducer.matchData,
-   	champions: state.championReducer.champions
+   	champions: state.championReducer.champions,
+   	mastery: state.masteryReducer
 
   }
 };

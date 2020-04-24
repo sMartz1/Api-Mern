@@ -20,6 +20,9 @@ const RiotApi = {
 	},
 	getMatchId:id=>{
 		return axios.get(RequestUrl.getMatchById(id))
+	},
+	getAllMastery:id=>{
+		return axios.get(RequestUrl.getAllMastery(id))
 	}
 
 

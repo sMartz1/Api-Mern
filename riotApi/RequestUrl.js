@@ -21,7 +21,8 @@ const queueTypes = id=>{
 const RequestUrl ={
 	getByName:name=>{
 		const urlByName = base + "summoner/v4/summoners/by-name/"+name+ process.env.API;
-				return urlByName;
+		const final = encodeURI(urlByName);
+				return final;
 	},
 	getRanked:id=>{
 		const urlRanked = base +"league/v4/entries/by-summoner/"+id+ process.env.API;
@@ -39,6 +40,10 @@ const RequestUrl ={
 	getMatchById:id=>{
 		const urlMatchId = base + "match/v4/matches/" + id + process.env.API;
 		return urlMatchId;
+	},
+	getAllMastery:id=>{
+		const urlAllMastery = base + "champion-mastery/v4/champion-masteries/by-summoner/" + id+process.env.API;
+		return urlAllMastery;
 	}
 
 

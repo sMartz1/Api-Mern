@@ -19,8 +19,10 @@ const RiotApiComponent = {
 		return axios.get('/colors?id='+id);
 	},
 	getMatch:(id,qType)=>{
-		console.log(qType);
 		return axios.get('/matchList?id='+id+"&typeQ="+qType)
+	},
+	getAllMastery:id=>{
+		return axios.get('/allM?id='+id)
 	}
 }
 

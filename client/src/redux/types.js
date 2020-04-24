@@ -7,7 +7,9 @@ const types = {
   gameData:"GAME DATA",
   champion:"CHAMPIOOOOOONS",
   colorPallete:"PALETA DE COLORES",
-  matchRanked:"MATCH RANKED"
+  matchRanked:"MATCH RANKED",
+  allMastery:"ALL MASTERY",
+  topMastery:"TOP MASTERY"
 }
 
 export default types;

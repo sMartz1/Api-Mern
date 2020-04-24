@@ -2,6 +2,7 @@ import types from '../types';
 import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
 import summonerLoading from './summonerLoading';
 import gameAction from './gameAction';
+import masteryAction from './masteryAction'
 const profileType = types.summProfile;
 const profileRankedType = types.summProfileRanked;
 const matchType = types.matchRanked;
@@ -84,7 +85,7 @@ const summonerProfileAction = () => async(dispatch, getState) => {
         payload: dataProfile
     });
 
-
+    dispatch(masteryAction(idSummoner));
     dispatch(gameAction(idSummoner));
 
 }

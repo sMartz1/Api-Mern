@@ -9,6 +9,7 @@ import loaderReducer from './reducers/loaderReducer';
 import summonerProfileReducer from './reducers/summonerProfileReducer';
 import gameReducer from './reducers/gameReducer';
 import championReducer from './reducers/championsReducer';
+import masteryReducer from './reducers/masteryReducer';
 //COMBINE REDUCERS
 
 const reducer = combineReducers( {
@@ -16,7 +17,8 @@ const reducer = combineReducers( {
   loaderReducer,
   summonerProfileReducer,
   gameReducer,
-  championReducer
+  championReducer,
+  masteryReducer
 
 } );
 

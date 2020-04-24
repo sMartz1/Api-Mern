@@ -31,3 +31,20 @@ animation-duration: 3s;
 .profileLiga {
 	min-width: 200px;
 }
+.mastery{
+	padding-right: 0 !important;
+}
+.imageChampion{
+
+    -webkit-mask-image: linear-gradient(to right, transparent 5%, black 75%);
+    background-position: right;
+    background-position-x: 4px;
+    background-repeat: no-repeat;
+}
+
+.masteryChampion{
+	
+	p{
+		margin-bottom: 0 !important;
+	}
+}
