@@ -66,23 +66,10 @@ let estilos = {
 
 
 
-const renderMastery = mastery=>{
-	let temp = []
-	for(let i =0;i<mastery.length;i++){
-	console.log(mastery[i]);
-	temp.push(mastery[i]);
-	if(i>2){
-		break;
-	}
-	
-	
-
-}
-return temp;
-}
 
 let mastery = this.props.mastery.allMastery;
-let topFour =renderMastery(mastery);
+let topFour =this.props.mastery.topFour;
+
 console.log(topFour);	
 
 
@@ -130,7 +117,7 @@ console.log(topFour);
 			    		return(<>
 					<div className="masteryChampion row" key={i}>
 					<div className="col-6">
-						<h3 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h3>
+						<h5 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h5>
 						<p key={m.championId+"a"}>{m.championPoints}</p>
 					</div>
 					<div className="imageChampion col-6" style={championStyle}></div>

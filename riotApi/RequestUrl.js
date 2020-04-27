@@ -44,6 +44,11 @@ const RequestUrl ={
 	getAllMastery:id=>{
 		const urlAllMastery = base + "champion-mastery/v4/champion-masteries/by-summoner/" + id+process.env.API;
 		return urlAllMastery;
+	},
+	getMatchWithChampion:(id,champId)=>{
+		const urlMatch = base + "match/v4/matchlists/by-account/"+id+process.env.API+"&champion="+champId;
+		return urlMatch;
+		
 	}
 
 

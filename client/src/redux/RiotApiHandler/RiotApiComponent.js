@@ -23,6 +23,9 @@ const RiotApiComponent = {
 	},
 	getAllMastery:id=>{
 		return axios.get('/allM?id='+id)
+	},
+	getChampionMatches:(id,champion)=>{
+		return axios.get('/championGames?id='+id+'&champion='+champion);
 	}
 }
 

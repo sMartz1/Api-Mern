@@ -2,10 +2,13 @@ import types from '../types';
 
 //GET TYPE FROM TYPE.js
 const allM = types.allMastery;
+const topFourType = types.topMastery;
 
 //SET DEFAULT VALUE
 const defaultState = {
-  allMastery: {}
+  allMastery: {},
+  topFour:[]
+  
 };
 
 function reducer( state = defaultState, action ) {
@@ -15,7 +18,17 @@ function reducer( state = defaultState, action ) {
     case allM: {
 
       return {
+      	...state,
         allMastery: action.payload
+      }
+
+    }
+
+    case topFourType: {
+
+      return {
+      	...state,
+        topFour: action.payload
       }
 
     }

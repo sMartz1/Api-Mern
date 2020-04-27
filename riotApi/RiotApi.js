@@ -23,6 +23,9 @@ const RiotApi = {
 	},
 	getAllMastery:id=>{
 		return axios.get(RequestUrl.getAllMastery(id))
+	},
+	getMatchWithChamp:(id,champId)=>{
+		return axios.get(RequestUrl.getMatchWithChampion(id,champId))
 	}
 
 

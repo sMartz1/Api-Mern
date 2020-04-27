@@ -171,8 +171,7 @@ router.get('/colors/', async(req, res) => {
 router.get('/matchList/', async(req, res) => {
     const accountId = req.query.id;
     const type = req.query.typeQ;
-    console.log("ID :     " + accountId);
-    console.log("TYPE:       " + type);
+
     let dataToSend = {};
     let i = 0
     let partidasSend = 10
@@ -206,9 +205,9 @@ router.get('/matchList/', async(req, res) => {
 
              
                i++;
-              console.log("Index",i)
+             
               if(i===partidasSend){
-                console.log("FINAL",dataToSend)
+                
                 res.send(dataToSend)
               }
 
@@ -222,12 +221,27 @@ router.get('/matchList/', async(req, res) => {
 
 router.get('/allM/', async(req,res)=>{
     const summId = req.query.id;
-    console.log("ALL M")
+    
     const masteryRetrive = await RiotApi.getAllMastery(summId)
         .then(d=>{
                res.send(d.data)
-        }).catch(console.log("Error en mastery"))
+        }).catch(e=>console.log("Error en mastery",e))
 })
+
+router.get('/championGames/', async(req,res)=>{
+    const summId = req.query.id;
+    const championId = req.query.champion
+    console.log("llega : "+ summId + " y "+ championId)
+    await RiotApi.getMatchWithChamp(summId,championId)
+        .then(d=>{
+            
+            res.send(d.data);
+
+        })
+        .catch(e=>console.log("Error en queque de champs",e))
+});
+
+
 
 
 
