@@ -116,7 +116,7 @@ console.log(topFour);
 				}
 			    		return(<>
 					<div className="masteryChampion row" key={i}>
-					<div className="col-6">
+					<div  key={i} className="col-6">
 						<h5 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h5>
 						<p key={m.championId+"a"}>{m.championPoints}</p>
 					</div>

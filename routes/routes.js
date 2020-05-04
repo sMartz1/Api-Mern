@@ -11,7 +11,7 @@ const {
 router.get('/summName/', async(req, res) => {
     let time = Date.now();
     const nameSummoner = req.query.name;
-    const sevenDaysMs = 604800000;
+    const sevenDaysMs = 504800000;
     
     const isSumm = await SummonerProfile.find({
             "name": new RegExp('\\b' + nameSummoner + '\\b', 'i')
@@ -50,15 +50,18 @@ router.get('/summName/', async(req, res) => {
                 })
             } else {
                 
-               
-                   let diferencia = time-fo.revisionDate;
+                   
+                   let diferencia = time-fo[0].revisionDate;
                    console.log("Revision",diferencia>sevenDaysMs);
+                   console.log("time",fo[0])
 
                   if(diferencia>sevenDaysMs){
-                    console.log("Se debe buscar de nuevo");
-                  console.log("Se añade nuevo USER! ", nameSummoner);
+                    
+                  console.log("SE BUSCA DE NUEVO ", nameSummoner);
                   RiotApi.sByName(nameSummoner).then(d => {
-                    fo = {
+
+                    const model = new SummonerProfile({
+                    
                         accountId: d.data.accountId,
                         profileIconId: d.data.profileIconId,
                         name: d.data.name,
@@ -66,16 +69,16 @@ router.get('/summName/', async(req, res) => {
                         summonerLevel: d.data.summonerLevel,
                         revisionDate: d.data.revisionDate,
                         puuid: d.data.puuid
-                    };
+                    });
 
-                    fo.save()
+                    model.save()
                         .then(result => {
                             SummonerProfile.find({
                                     id: result.id
                                 })
                                 .then(finalSend => {
                                     res.send(finalSend);
-                                });
+                                }).catch(e=>console.log("Error name check"));
 
                         })
                         .catch(error => {
@@ -97,7 +100,7 @@ router.get('/summName/', async(req, res) => {
 });
 router.get('/rankedStats/', async(req, res) => {
     const id = req.query.id;
-
+    console.log("Llega : ",id)
     let ligas = {
         soloq: {},
         flexq: {},
@@ -125,7 +128,7 @@ router.get('/rankedStats/', async(req, res) => {
             res.send(ligas);
         })
         .catch(e => {
-            console.log(e)
+            console.log("Error en ranked")
         });
 
 });
@@ -221,7 +224,7 @@ router.get('/matchList/', async(req, res) => {
 
 router.get('/allM/', async(req,res)=>{
     const summId = req.query.id;
-    
+    console.log("EN MASTERY");
     const masteryRetrive = await RiotApi.getAllMastery(summId)
         .then(d=>{
                res.send(d.data)
@@ -229,6 +232,7 @@ router.get('/allM/', async(req,res)=>{
 })
 
 router.get('/championGames/', async(req,res)=>{
+    console.log("EN CHAMP GAME");
     const summId = req.query.id;
     const championId = req.query.champion
     console.log("llega : "+ summId + " y "+ championId)

@@ -46,7 +46,7 @@ const summonerProfileAction = () => async(dispatch, getState) => {
             });
         }).catch(e => console.log(e));
 
-
+    
     await RiotApiComponent.getRanked(idSummoner)
         .then(dRanked => {
 
