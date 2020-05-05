@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {  connect } from 'react-redux';
 
 import gameUtils from '../Game/gameUtils';
-
+import Mastery from '../Mastery/Mastery';
 const championUrl = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/champion/";
 const ddEndpoint = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/profileicon/";
 
@@ -67,10 +67,9 @@ let estilos = {
 
 
 
-let mastery = this.props.mastery.allMastery;
-let topFour =this.props.mastery.topFour;
 
-console.log(topFour);	
+
+	
 
 
 
@@ -108,21 +107,7 @@ console.log(topFour);
 				</div>
 			    <div className="col-2 ">
 			    <div className="row">
-			    <div className="col-8 statsProfile bg-light mastery mx-auto">
-			    {topFour.map((m,i)=>{
-			   
-				let championStyle = {
-					backgroundImage:"url("+championUrl + gameUtils.getChampionName(m.championId,champions) + ".png)"
-				}
-			    		return(<>
-					<div className="masteryChampion row" key={i}>
-					<div  key={i} className="col-6">
-						<h5 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h5>
-						<p key={m.championId+"a"}>{m.championPoints}</p>
-					</div>
-					<div className="imageChampion col-6" style={championStyle}></div>
-					</div> </>)
-			    })}</div>
+			    	<Mastery />
 			    </div>
 			    </div>
 
@@ -177,7 +162,7 @@ const mapStateToProps = (state) => {
    	colors: state.summonerProfileReducer.colors,
    	matchRanked: state.summonerProfileReducer.matchData,
    	champions: state.championReducer.champions,
-   	mastery: state.masteryReducer
+   	
 
   }
 };
