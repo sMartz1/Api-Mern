@@ -62,17 +62,6 @@ let estilos = {
 	boxShadow: "17px 6px 1px rgb("+setupRgb(colors[0])+",0.6),-4px 10px 1px rgb("+setupRgb(colors[1])+",0.6),-16px -6px 1px rgb("+setupRgb(colors[2])+",0.5),5px -4px 1px rgb("+setupRgb(colors[3])+",0.5)"
 }
 
-
-
-
-
-
-
-
-	
-
-
-
 		return (<>
 				<div className="row">
 				<div className="col-2 soloStats statsProfile bg-light mx-auto animated fadeInDownBig">

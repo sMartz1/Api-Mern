@@ -1,6 +1,6 @@
 import types from '../types';
 import RiotApiComponent from '../RiotApiHandler/RiotApiComponent';
-import summonerLoading from './summonerLoading';
+
 
 const allMastery = types.allMastery;
 const topFourType = types.topMastery;

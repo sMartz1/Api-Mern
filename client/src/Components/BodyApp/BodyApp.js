@@ -3,7 +3,7 @@ import {  connect } from 'react-redux';
 
 import SummonerProfile from '../SummonerProfile/SummonerProfile';
 import Game from '../Game/Game';
-
+import Loader from './Loader';
 
 class BodyApp extends Component{
 
@@ -13,7 +13,9 @@ class BodyApp extends Component{
 		const renderBody = (isLoading,loaded) =>{
 			
 			if(isLoading){
-				return(<h2>Cargando...</h2>)
+				return(<div className="col loadingScreen animated fadeInDownBig">
+					<Loader />
+					</div>)
 			}else{
 				if(loaded){
 					return (<>
