@@ -46,7 +46,7 @@ $spacers: map-merge(
 }
 
 .statsProfile{
-      border-radius: 0px 0px 5px 5px;
+      
        box-shadow: 0 3px 6px rgba(#000, .16),
             0 3px 6px rgba(#000, .23) ;
       min-width: 103px;
@@ -185,5 +185,7 @@ html,.container-fluid{
 .participantName{
   font-size:1.2em;
 }
+
+
 
 @import "profile";

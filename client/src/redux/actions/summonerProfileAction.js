@@ -85,7 +85,7 @@ const summonerProfileAction = () => async(dispatch, getState) => {
         payload: dataProfile
     });
 
-    dispatch(masteryAction(idSummoner));
+    await dispatch(masteryAction(idSummoner));
     dispatch(gameAction(idSummoner));
 
 }

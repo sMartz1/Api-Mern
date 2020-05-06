@@ -64,13 +64,14 @@ let estilos = {
 
 		return (<>
 				<div className="row">
-				<div className="col-2 soloStats statsProfile bg-light mx-auto animated fadeInDownBig">
+				<div className="col-4 mx-auto animated fadeInDownBig">
 					<div className="row text-center">
+						<div className="col-7 statsProfile bg-light mx-auto">
 						<h4 className="col">Solo</h4>
 						<div className="w-100"></div>
 						{renderLeague("solo",this.props.rankedData)}
 						<div className="w-100"></div>
-						<div className="row ml-0 pl-2">
+						<div className="row ">
 						{Object.keys(this.props.matchRanked.solo).map((mat,ky)=>{
 								let actual = this.props.matchRanked.solo[mat]
 								
@@ -78,7 +79,7 @@ let estilos = {
 									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
 								}
 								return(
-									<div key={ky} className="col-1 tenGames" style={matchStyle}>
+									<div key={ky} className={ky>0?"col-1 tenGames":"col-1 tenGames offset-1"} style={matchStyle}>
 									{actual.win?(<div key={ky} className="victoria"></div>):(<div key={ky} className="derrota"></div>)}
 									</div>
 									)
@@ -87,38 +88,18 @@ let estilos = {
 						</div>
 						<div className="w-100"></div>
 						<h3 className="lp text-center col mt-2">{this.props.rankedData.soloq.leaguePoints} LP</h3>
-
+						</div>
 
 
 
 					</div>
-
-				</div>
-			    <div className="col-2 ">
-			    <div className="row">
-			    	<Mastery />
-			    </div>
-			    </div>
-
-				<div className="profileIcon col-1 mx-auto animated fadeInDownBig">
-						
- 					
-    			<div className="imageProfile rounded-circle mx-auto" style={estilos} ></div>
- 									
-						<br/>
-						<h2 className="text-center summLevel">{data.summonerLevel}</h2>
-						<br/>
-						<h1 className="text-center summName">{data.name}</h1>
-						
-				</div>
-					
-				<div className="col-2 flexStats statsProfile bg-light mx-auto animated fadeInDownBig">
-					<div className="row text-center">
+							<div className="row text-center mt-2">
+							<div className="col-7 statsProfile bg-light mx-auto ">
 						<h4 className="col">Flex</h4>
 						<div className="w-100"></div>
 						{renderLeague("flex",this.props.rankedData)}
 						<div className="w-100"></div>
-						<div className="row ml-0 pl-2">
+						<div className="row">
 							{Object.keys(this.props.matchRanked.flex).map((mat,ky)=>{
 								let actual = this.props.matchRanked.flex[mat]
 								
@@ -126,7 +107,7 @@ let estilos = {
 									backgroundImage: "url(" + championUrl + gameUtils.getChampionName(actual.champion,champions) + ".png)",
 								}
 								return(
-									<div key={ky} className="col-1 tenGames" style={matchStyle}>
+									<div key={ky} className={ky>0?"col-1 tenGames":"col-1 tenGames offset-1"} style={matchStyle}>
 									{actual.win?(<div key={ky} className="victoria"></div>):(<div key={ky}  className="derrota"></div>)}
 									</div>
 									)
@@ -135,8 +116,30 @@ let estilos = {
 						<div className="w-100"></div>
 						<h3 className="lp text-center col mt-2">{this.props.rankedData.flexq.leaguePoints} LP</h3>
 					</div>
-				</div>
 					</div>
+				</div>
+			<div className="profileIcon col-4 mx-auto animated fadeInDownBig">
+						
+ 					
+    		<div className="imageProfile rounded-circle mx-auto" style={estilos} ></div>
+ 									
+						<br/>
+						<h2 className="text-center summLevel">{data.summonerLevel}</h2>
+						<br/>
+						<h1 className="text-center summName">{data.name}</h1>
+						
+				</div>
+			    <div className="col-4 mx-auto">
+			    <div className="row">
+			    	<Mastery />
+			    </div>
+			    </div>
+
+
+
+					
+
+		    	</div>
 					
 					
 				</>)

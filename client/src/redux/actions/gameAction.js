@@ -35,9 +35,10 @@ const gameAction = (id) => async (dispatch, getState) =>{
 
 	}
 
-
-	dispatch(summonerLoading(true,"loaded"));
-	dispatch(summonerLoading(false,"loading"));
+ console.log("Game fin ")
+ dispatch(summonerLoading(true,"loaded"));
+ dispatch(summonerLoading(false,"loading"));
+	
 
 }
 

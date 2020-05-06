@@ -128,7 +128,8 @@ router.get('/rankedStats/', async(req, res) => {
             res.send(ligas);
         })
         .catch(e => {
-            console.log("Error en ranked")
+            console.log("Error en ranked",e);
+
         });
 
 });

@@ -10,18 +10,22 @@ class Mastery extends Component {
 		let topFour =this.props.mastery.topFour;
 		const champions = this.props.champions;
 
+
 		return (
-			<div className="col-8 statsProfile bg-light mastery mx-auto">
+			<div className="col-8 mastery mx-auto animated fadeInDownBig">
+
 			    {topFour.map((m,i)=>{
 			   
+			   	console.log("VALOR que llegue",topFour[i]["totalGames"])
 				let championStyle = {
 					backgroundImage:"url("+championUrl + gameUtils.getChampionName(m.championId,champions) + ".png)"
 				}
 			    		return(
-					<div className="masteryChampion row" key={i}>
+					<div className="masteryChampion row mb-1 statsProfile bg-light" key={i}>
 					<div  key={i} className="col-6">
 						<h5 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h5>
 						<p key={m.championId+"a"}>{m.championPoints}</p>
+						<p key={m.championId+"g"}>Total Games: {m.totalGames}</p>
 					</div>
 					<div key={m.championId+"i"}className="imageChampion col-6" style={championStyle}></div>
 					</div>)
