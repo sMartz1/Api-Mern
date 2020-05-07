@@ -1,6 +1,8 @@
 const express = require('express');
 const SummonerProfile = require('./../mongoDb/models/SummonerProfile');
+const Match = require('./../mongoDb/models/match');
 const RiotApi = require('./../riotApi/RiotApi');
+const checkDb = require('../mongoDb/utils/checkDb');
 const axios = require('axios');
 const router = express.Router();
 const ddEndpoint = "http://ddragon.leagueoflegends.com/cdn/10.7.1/img/profileicon/";
@@ -11,92 +13,16 @@ const {
 router.get('/summName/', async(req, res) => {
     let time = Date.now();
     const nameSummoner = req.query.name;
-    const sevenDaysMs = 504800000;
     
-    const isSumm = await SummonerProfile.find({
-            "name": new RegExp('\\b' + nameSummoner + '\\b', 'i')
-        })
-        .then(fo => {
-            console.log("LEnght", fo.length)
-            if (fo.length === 0) {
-                console.log("Se añade nuevo USER! ", nameSummoner);
-                RiotApi.sByName(nameSummoner).then(d => {
-                    const model = new SummonerProfile({
-                        accountId: d.data.accountId,
-                        profileIconId: d.data.profileIconId,
-                        name: d.data.name,
-                        id: d.data.id,
-                        summonerLevel: d.data.summonerLevel,
-                        revisionDate: d.data.revisionDate,
-                        puuid: d.data.puuid
-                    });
+    const valor = await checkDb(nameSummoner,"summonerName",time);
+    console.log("VALOR",valor)
+    res.send(valor);
 
-                    model.save()
-                        .then(result => {
-                            SummonerProfile.find({
-                                    id: result.id
-                                })
-                                .then(finalSend => {
-                                    res.send(finalSend);
-                                });
-
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-
-
-
-                })
-            } else {
-                
-                   
-                   let diferencia = time-fo[0].revisionDate;
-                   console.log("Revision",diferencia>sevenDaysMs);
-                   console.log("time",fo[0])
-
-                  if(diferencia>sevenDaysMs){
-                    
-                  console.log("SE BUSCA DE NUEVO ", nameSummoner);
-                  RiotApi.sByName(nameSummoner).then(d => {
-
-                    const model = new SummonerProfile({
-                    
-                        accountId: d.data.accountId,
-                        profileIconId: d.data.profileIconId,
-                        name: d.data.name,
-                        id: d.data.id,
-                        summonerLevel: d.data.summonerLevel,
-                        revisionDate: d.data.revisionDate,
-                        puuid: d.data.puuid
-                    });
-
-                    model.save()
-                        .then(result => {
-                            SummonerProfile.find({
-                                    id: result.id
-                                })
-                                .then(finalSend => {
-                                    res.send(finalSend);
-                                }).catch(e=>console.log("Error name check"));
-
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-
-
-
-                })
-
-                  }else{
-                    console.log("Se envia de BD")
-                    res.send(fo);
-                  }
-                
-                
-            }
-        });
+    
+    
+    
+   
+       
 });
 router.get('/rankedStats/', async(req, res) => {
     const id = req.query.id;
@@ -245,6 +171,7 @@ router.get('/championGames/', async(req,res)=>{
         })
         .catch(e=>console.log("Error en queque de champs",e))
 });
+ 
 
 
 

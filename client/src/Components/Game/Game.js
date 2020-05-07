@@ -20,7 +20,7 @@ class Game extends Component {
 			if(isGame){
 				return (<>{gameUtils.getGame(gameData,champions)}</>)
 			}else{
-				return <h1>No esta en partida</h1>
+				return <h1 className="animated bounceInDown">No esta en partida</h1>
 			}
 		}
 		return (

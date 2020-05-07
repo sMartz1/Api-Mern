@@ -42,6 +42,7 @@ const renderMastery = async (mastery,id) => {
         console.log(mastery[i]);
         await RiotApiComponent.getChampionMatches(id,mastery[i].championId)
             .then(matches=>{
+                console.log("MA",matches.data)
                  temp.push({
                     championId:mastery[i].championId,
                     championPoints:mastery[i].championPoints,

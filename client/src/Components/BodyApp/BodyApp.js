@@ -22,7 +22,7 @@ class BodyApp extends Component{
 						<div className="profileSection col-12 mt-10">
 					 	<SummonerProfile />
 						</div>
-						<div className="gameSection col-12 mt-10">
+						<div className="gameSection col-12 mt-10 text-center">
 						<Game />
 						</div>
 					</>)
