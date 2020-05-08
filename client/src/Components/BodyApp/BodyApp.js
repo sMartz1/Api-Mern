@@ -30,9 +30,9 @@ class BodyApp extends Component{
 					</>)
 				}else{
 					return  <div
-       			className="col-12 notFound animated fadeInUpBig"
+       			className="col-12 notFound animated fadeInUpBig text-center"
        			style={{ backgroundImage: `url(${mySvg})` }}
-   				 > </div>
+   				 ><h1 className="display textNotFound ">Summoner not found...</h1> </div>
 				}
 				}else{
 					return <h3>Ready to find and seek!</h3>
