@@ -10,13 +10,29 @@ const {
     getPaletteFromURL
 } = require('color-thief-node');
 
+
 router.get('/summName/', async(req, res) => {
-    let time = Date.now();
-    const nameSummoner = req.query.name;
+            let time = Date.now();
+            const nameSummoner = req.query.name;
+
+            const valor = await checkDb(nameSummoner, "summonerName", time);
+            console.log("VALOR", valor)
+
+            if (!valor) {
+                console.log("Se envia name por false")
+                res.send({
+                    data: [valor],
+                    isSummoner: false
+                })
+            } else {
+
+                console.log("Se envia name por true");
+                res.send({
+                    data: valor,
+                    isSummoner: true
+                })
+            }
     
-    const valor = await checkDb(nameSummoner,"summonerName",time);
-    console.log("VALOR",valor)
-    res.send(valor);
 
     
     

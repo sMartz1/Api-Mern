@@ -10,6 +10,7 @@ const matchType = types.matchRanked;
 //SET DEFAULT VALUE
 const defaultState = {
   summonerData:{},
+  summonerFound:false,
   rankedData:{},
   colors:[],
   matchData:[]
@@ -20,10 +21,11 @@ function reducer( state = defaultState, action ) {
   switch (action.type) {
 
     case typeProfile: {
-
+      
       return {
         ...state,
-        summonerData: action.payload
+        summonerData: action.payload.data,
+        summonerFound:action.payload.isSummoner
       }
 
     }

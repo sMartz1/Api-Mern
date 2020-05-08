@@ -10,7 +10,7 @@ class BodyApp extends Component{
 
 
 	render(){
-		const renderBody = (isLoading,loaded) =>{
+		const renderBody = (isLoading,loaded,summ) =>{
 			
 			if(isLoading){
 				return(<div className="col loadingScreen animated fadeInDownBig">
@@ -18,6 +18,7 @@ class BodyApp extends Component{
 					</div>)
 			}else{
 				if(loaded){
+					if(summ){
 					return (<>
 						<div className="profileSection col-12 mt-10">
 					 	<SummonerProfile />
@@ -26,6 +27,9 @@ class BodyApp extends Component{
 						<Game />
 						</div>
 					</>)
+				}else{
+					return <h2 className="col display-4 mt-10 text-center">Seguro que has puesto bien el nombre? Recibo 404 de riot...</h2>
+				}
 				}else{
 					return <h3>go machine</h3>
 				}
@@ -37,7 +41,7 @@ class BodyApp extends Component{
 
 //////////////////////////////
 //FINAL RENDER
-		return(<>{renderBody(this.props.isLoading,this.props.loaded)}</>)
+		return(<>{renderBody(this.props.isLoading,this.props.loaded,this.props.summLoaded)}</>)
 			 
 	}
 }
@@ -47,7 +51,8 @@ class BodyApp extends Component{
 const mapStateToProps = (state) => {
   return {
     isLoading: state.loaderReducer.isLoading,
-   	loaded:state.loaderReducer.loaded
+   	loaded:state.loaderReducer.loaded,
+   	summLoaded:state.summonerProfileReducer.summonerFound
 
   }
 };

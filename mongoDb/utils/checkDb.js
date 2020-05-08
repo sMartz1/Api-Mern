@@ -3,6 +3,7 @@ const SummonerProfile = require('../models/SummonerProfile');
 const Match = require('../models/match');
 
 const checkDb = async(valor, type, time) => {
+    //Esta variable define cuanto tiempo tiene que haber pasado para actualizar perfil en mongodb
     const sevenDaysMs = 504800000;
     let respuesta = {};
 
@@ -111,7 +112,9 @@ const checkDb = async(valor, type, time) => {
 
 
                     }
-                }).catch(e => console.log("error en checkDB", e))
+                }).catch(e => {
+                respuesta = false;
+                console.log("error en checkDB", e)})
                 break;
             }
             //////////////////////////////////////

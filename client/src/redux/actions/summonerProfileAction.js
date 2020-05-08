@@ -21,10 +21,14 @@ const summonerProfileAction = () => async(dispatch, getState) => {
     //GET SUMMONER PROFILE
     await RiotApiComponent.getName(name)
         .then(d => {
-            d.data.find(dfind => {
+
+            d.data.data.find(dfind => {
                 dispatch({
                     type: profileType,
-                    payload: dfind
+                    payload: {
+                        data:dfind,
+                        isSummoner:d.data.isSummoner
+                    }
                 })
                 return true;
 
@@ -33,6 +37,8 @@ const summonerProfileAction = () => async(dispatch, getState) => {
             })
 
         }).catch(e => console.log(e));
+    console.log("Llega a action : ",getState().summonerProfileReducer.summonerFound)
+    if(getState().summonerProfileReducer.summonerFound){
 
     let idSummoner = getState().summonerProfileReducer.summonerData.id;
     let idProfile = getState().summonerProfileReducer.summonerData.profileIconId;
@@ -87,6 +93,11 @@ const summonerProfileAction = () => async(dispatch, getState) => {
 
     await dispatch(masteryAction(idSummoner));
     dispatch(gameAction(idSummoner));
+
+    }else{
+         dispatch(summonerLoading(true,"loaded"));
+         dispatch(summonerLoading(false,"loading"));
+    }
 
 }
 
