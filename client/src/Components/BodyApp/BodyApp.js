@@ -4,6 +4,7 @@ import {  connect } from 'react-redux';
 import SummonerProfile from '../SummonerProfile/SummonerProfile';
 import Game from '../Game/Game';
 import Loader from './Loader';
+import mySvg from '../../assets/404.svg'
 
 class BodyApp extends Component{
 
@@ -28,10 +29,13 @@ class BodyApp extends Component{
 						</div>
 					</>)
 				}else{
-					return <h2 className="col display-4 mt-10 text-center">Seguro que has puesto bien el nombre? Recibo 404 de riot...</h2>
+					return  <div
+       			className="col-12 notFound animated fadeInUpBig"
+       			style={{ backgroundImage: `url(${mySvg})` }}
+   				 > </div>
 				}
 				}else{
-					return <h3>go machine</h3>
+					return <h3>Ready to find and seek!</h3>
 				}
 			}	
 		}
