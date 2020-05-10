@@ -125,12 +125,11 @@ router.get('/matchList/', async(req, res) => {
         .then(async d => {
             
             await d.data.matches.map(async d => {
-                
-                await RiotApi.getMatchId(d.gameId)
-                .then(match => {
+                let match = await checkDb(d.gameId,"match");
+              
                     let resultado;
                     
-                    match.data.participants.map(f => {
+                   await match.participants.map(f => {
 
                         if (f.championId === d.champion) {
                           
@@ -147,7 +146,7 @@ router.get('/matchList/', async(req, res) => {
                     }
                    
                  
-                }).catch(e=>console.log("error en match id"))
+                
 
              
                i++;

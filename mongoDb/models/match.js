@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const matchSchema = mongoose.Schema({
+	gameId:{
+		type:String,
+		required:true
+	},
 	match:{
 		type: Object,
 		required: true
@@ -13,4 +17,4 @@ const matchSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Match', matchSchema);
+module.exports = mongoose.model('match', matchSchema);
