@@ -10456,7 +10456,7 @@ html, .container-fluid, .container-sm, .container-md, .container-lg, .container-
 }
 
 .textNotFound {
-  padding-top: 45%;
+  padding-top: 5%;
   animation: text-shadow 1.5s ease-in-out;
   animation-iteration-count: 1;
   font-size: 5em;
