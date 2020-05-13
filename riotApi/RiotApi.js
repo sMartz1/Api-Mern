@@ -26,7 +26,11 @@ const RiotApi = {
 	},
 	getMatchWithChamp:(id,champId)=>{
 		return axios.get(RequestUrl.getMatchWithChampion(id,champId))
+	},
+	getMatchWithChampI:(id,champId,i)=>{
+		return axios.get(RequestUrl.getMatchWithChampionI(id,champId,i))
 	}
+
 
 
 }

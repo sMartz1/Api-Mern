@@ -49,6 +49,11 @@ const RequestUrl ={
 		const urlMatch = base + "match/v4/matchlists/by-account/"+id+process.env.API+"&champion="+champId;
 		return urlMatch;
 		
+	},
+	getMatchWithChampionI:(id,champId,i)=>{
+		const urlMatch = base + "match/v4/matchlists/by-account/"+id+process.env.API+"&champion="+champId+"&beginIndex="+i;
+		return urlMatch;
+		
 	}
 
 

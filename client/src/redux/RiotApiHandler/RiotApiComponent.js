@@ -26,6 +26,9 @@ const RiotApiComponent = {
 	},
 	getChampionMatches:(id,champion)=>{
 		return axios.get('/championGames?id='+id+'&champion='+champion);
+	},
+	getGameData:gameId=>{
+		return axios.get('/gameId?id='+gameId);
 	}
 }
 

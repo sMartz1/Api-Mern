@@ -86,13 +86,13 @@ const summonerProfileAction = () => async(dispatch, getState) => {
 
 
 
-    dispatch({
+    await dispatch({
         type: matchType,
         payload: dataProfile
     });
 
     await dispatch(masteryAction(idSummoner));
-    dispatch(gameAction(idSummoner));
+    await dispatch(gameAction(idSummoner));
 
     }else{
          dispatch(summonerLoading(true,"loaded"));

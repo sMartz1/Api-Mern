@@ -129,7 +129,7 @@ router.get('/matchList/', async(req, res) => {
               
                     let resultado;
                     
-                   await match.participants.map(f => {
+                   await match.match.participants.map(f => {
 
                         if (f.championId === d.champion) {
                           
@@ -179,18 +179,33 @@ router.get('/championGames/', async(req,res)=>{
     const championId = req.query.champion
     console.log("llega : "+ summId + " y "+ championId)
     await RiotApi.getMatchWithChamp(summId,championId)
-        .then(d=>{
-            
-            res.send(d.data);
+        .then(async d=>{
+            let dataToSend = d.data
+            await getGames(dataToSend.totalGames,dataToSend,summId,championId);
+            res.send(dataToSend);
 
         })
         .catch(e=>console.log("Error en queque de champs",e))
 });
  
 
+router.get('/gameId/', async(req,res)=>{
+    const gameId = req.query.id;
+    let game = await checkDb(gameId,"match");
+    res.send(await game);
+})
 
 
-
-
-
+const getGames = async (totalGames,data,summId,championId) =>{
+    let index = 0;
+    while(totalGames>index){
+         await RiotApi.getMatchWithChampI(summId,championId,index).then(async d2=>{
+             d2.data.matches.map(la=>{
+                      data.matches.push(la)
+                  })
+         index = index +100;
+         })
+         .catch(e=>console.log("error en segunda vuelta de campeones",e))
+    }
+}
 module.exports = router;

@@ -17,7 +17,7 @@ const checkDb = async(valor, type, time) => {
                 const isSumm = await summModel.find({
                     "name": new RegExp('\\b' + valor + '\\b', 'i')
                 }).then(async fo => {
-                    console.log("LEnght", fo);
+                   
 
                     //Se busca en BD por nombre, en caso de que el array tenga lenght 0 se añade usuario.
                     if (fo.length === 0) {
@@ -95,7 +95,7 @@ const checkDb = async(valor, type, time) => {
                                                 respuesta = finalSend
 
                                             }).catch(e => console.log("Error name check"));
-                                        console.log("xx")
+                                        
                                     })
                                     .catch(error => {
                                         console.log(e => "error4");
@@ -106,7 +106,7 @@ const checkDb = async(valor, type, time) => {
                             }).catch(e => console.log("error5"));
 
                         } else {
-                            console.log("Se envia de BD", fo)
+                            console.log("Se envia de BD")
 
                             respuesta = fo;
 
@@ -133,12 +133,14 @@ const checkDb = async(valor, type, time) => {
                         const gameRetrive = await RiotApi.getMatchId(valor).then(async d=>{
                             model= new matchModel({
                                 gameId:d.data.gameId,
-                                match:d.data
+                                match:d.data,
+                                count:true
                             });
 
                             await model.save();
 
-                            respuesta = d.data;
+                            respuesta = {match:d.data,
+                                         count:true};
 
 
 
@@ -148,18 +150,20 @@ const checkDb = async(valor, type, time) => {
                     }else{
                         
                         fo.map(sendFinal=>{
-                            console.log("Se manda de bd match")
-                            respuesta = sendFinal.match
+                           
+                            respuesta = {match:sendFinal.match,
+                                         count:false};
                         })
+                        
                     }
                 }).catch(e=>console.log(e))
-                console.log("llego a match")
+                
                 break;
             }
         default:
             break;
     }
-    console.log("Se manda ", respuesta)
+   
     return respuesta
 }
 
