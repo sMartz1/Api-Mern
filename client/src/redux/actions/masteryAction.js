@@ -40,9 +40,8 @@ const renderMastery = async (mastery,id) => {
     
     
     
-    let arrMatches= []  
+   
     
-    let winRate = 0;
     let temp = []
     //Se realiza bucle para pasar por los 4 primeros
     for(let i = 0; i < mastery.length; i++) {
@@ -52,12 +51,12 @@ const renderMastery = async (mastery,id) => {
         await RiotApiComponent.getChampionMatches(id,mastery[i].championId)
             .then(async matches=>{
                 
-                console.log("2",matches.data.totalGames)
+                console.log("2",matches.data.matches.length)
                 //Se loop por cada game
                let games = await fetchDataWithChampion(matches.data.matches);
                console.log("DUPLICATES",getDuplicateArrayElements(games))
                console.log("3")
-               winRate = 0;
+               let winRate = 0;
                console.log("llega ", games)
                console.log("largo",games.length)
                games.map((m,iMatch)=>{
@@ -65,10 +64,11 @@ const renderMastery = async (mastery,id) => {
                             m.participants.map((statF,iStats)=>{
                          if (statF.championId === mastery[i].championId) {
                              statF.stats.win?winRate++:console.log("lost")
-                             
+                            
                          }
+                         return m; 
                     })
-
+                           return m; 
                 })
                 
                
@@ -78,11 +78,11 @@ const renderMastery = async (mastery,id) => {
                     championPoints:mastery[i].championPoints,
                     winRate:(winRate/games.length*100).toFixed(0),
                     partidasAnalizadas:games.length,
-                    totalGames: matches.data.totalGames,
+                    totalGames: matches.data.matches.length,
                             });
-                 arrMatches= []
                 
-                  
+                
+               return true;     
             }).catch(e=>console.log("Error render MAstery",e))
        
         if (i > 2) {

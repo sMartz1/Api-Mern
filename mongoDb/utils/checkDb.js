@@ -145,7 +145,11 @@ const checkDb = async(valor, type, time) => {
 
 
                         })
-                        .catch(e=>console.log("error get match"))
+                        .catch(e=>{
+
+                            console.log("error get match")
+                            
+                        })
 
                     }else{
                         

@@ -25,6 +25,7 @@ class Mastery extends Component {
 					<div  key={i} className="col-6">
 						<h5 key={m.championId+"i"}>{gameUtils.getChampionName(m.championId,champions)}</h5>
 						<p key={m.championId+"a"}>{m.championPoints}</p>
+						<p key={m.championId+"g"}>Total games: {m.totalGames}</p>
 						<p key={m.championId+"an"}>Games analizadas:{m.partidasAnalizadas}</p>
 						<p key={m.championId+"wr"}>WinRate: {m.winRate}%</p>
 

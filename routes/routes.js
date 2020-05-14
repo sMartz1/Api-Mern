@@ -200,8 +200,11 @@ const getGames = async (totalGames,data,summId,championId) =>{
     let index = 0;
     while(totalGames>index){
          await RiotApi.getMatchWithChampI(summId,championId,index).then(async d2=>{
+
+            
              d2.data.matches.map(la=>{
                       data.matches.push(la)
+
                   })
          index = index +100;
          })
