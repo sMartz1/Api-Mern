@@ -103,7 +103,7 @@ const renderMastery = async (mastery,id) => {
 const fetchDataWithChampion = async (matchList)=>{
     let contador = 0;
    
-    let cap = 20;
+    let cap = 15;
     let temp = [];
     for await (let g of matchList) {
         if (contador < cap) {

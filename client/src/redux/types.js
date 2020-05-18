@@ -9,7 +9,8 @@ const types = {
   colorPallete:"PALETA DE COLORES",
   matchRanked:"MATCH RANKED",
   allMastery:"ALL MASTERY",
-  topMastery:"TOP MASTERY"
+  topMastery:"TOP MASTERY",
+  modal:"MODAL"
 }
 
 export default types;

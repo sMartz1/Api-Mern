@@ -10,6 +10,7 @@ import summonerProfileReducer from './reducers/summonerProfileReducer';
 import gameReducer from './reducers/gameReducer';
 import championReducer from './reducers/championsReducer';
 import masteryReducer from './reducers/masteryReducer';
+import modalReducer from './reducers/modalReducer';
 //COMBINE REDUCERS
 
 const reducer = combineReducers( {
@@ -18,7 +19,8 @@ const reducer = combineReducers( {
   summonerProfileReducer,
   gameReducer,
   championReducer,
-  masteryReducer
+  masteryReducer,
+  modalReducer
 
 } );
 

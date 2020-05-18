@@ -12,13 +12,14 @@ const checkDb = async(valor, type, time) => {
     switch (type) {
         //////////////////////////////////////
         case "summonerName":
-            {
+            {    
+                console.log();
                 respuesta = {};
+                
                 const isSumm = await summModel.find({
                     "name": new RegExp('\\b' + valor + '\\b', 'i')
                 }).then(async fo => {
-                   
-
+                   console.log("NAME",fo);
                     //Se busca en BD por nombre, en caso de que el array tenga lenght 0 se añade usuario.
                     if (fo.length === 0) {
                         console.log("Se añade nuevo USER! ", valor);
@@ -54,7 +55,7 @@ const checkDb = async(valor, type, time) => {
 
 
 
-                        })
+                        }).catch(e=>{console.log("error en name")})
                     } else {
 
 
@@ -117,8 +118,8 @@ const checkDb = async(valor, type, time) => {
                 }).catch(e => {
                 respuesta = false;
                 console.log("error en checkDB", e)})
-                break;
-            }
+                break;}
+            
             //////////////////////////////////////
         case "match":{
                  let matchModel = mongoose.model('match');

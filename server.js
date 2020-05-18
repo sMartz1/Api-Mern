@@ -8,15 +8,11 @@ const routes = require('./routes/routes');
 
 const app = express();
 
-
-mongoose.connect(process.env.DB_CONNECTION, {
-        useNewUrlParser: true
-    },
-    () => {
-
-        console.log("CONTECTED DB!")
-    });
-
+try{
+mongoose.connect(process.env.DB_CONNECTION,{ useNewUrlParser: true,useUnifiedTopology: true });
+}catch (error){
+	console.log(error)
+}
 
 app.use('/',routes);
 
